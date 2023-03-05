@@ -1,27 +1,17 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.SimpleTimeZone;
+import java.util.*;
 
 public class WordsChecker {
 
-    protected String text;
-    protected String word;
+    protected Set<String> text;
+
 
     public WordsChecker(String text) {
-        this.text = text;
+        this.text = new HashSet<>(List.of(text.split("\\P{IsAlphabetic}+")));
     }
 
     boolean hasWord(String word) {
-        this.word = word;
-        HashSet<String> words = new HashSet<>();
-        String[] textAlpha = text.split("\\P{IsAlphabetic}+");
-        words.addAll(List.of(textAlpha));
-        if (words.contains(word)){
-            System.out.println("Слово " + word + " присутсвует в тексте");
-            return true;
-        }
-        System.out.println("Слово " + word + " отсутствует в тексте");
-        return false;
+        System.out.println(text.contains(word));
+        return text.contains(word);
+
     }
 }
